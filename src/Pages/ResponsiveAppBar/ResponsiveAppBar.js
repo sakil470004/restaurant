@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 // const pages = ['Products', 'Pricing', 'Blog'];
 
@@ -23,19 +24,19 @@ const ResponsiveAppBar = () => {
         setAnchorElNav(null);
     };
 
-  
+
 
     return (
-        <AppBar position="sticky" style={{ background: '#2E3B55' }}>
+        <AppBar elevation={0} position="sticky" style={{ background: '#fcf4e0' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+                        sx={{ mr: 2,color:'red', display: { xs: 'none', md: 'flex' } }}
                     >
-                        MI
+                       MI Restaurant
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -67,45 +68,45 @@ const ResponsiveAppBar = () => {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            
-                                <MenuItem  onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">
-                                    <Link style={{textDecoration: 'none'}} to='/'>Home</Link>
-                                    </Typography>
-                                </MenuItem>
-                                <MenuItem  onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">
-                                    <Link style={{textDecoration: 'none'}} to='/allNews'>All News</Link>
-                                    </Typography>
-                                </MenuItem>
-                           
+
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <Typography textAlign="center">
+                                    <Link style={{ textDecoration: 'none' }} to='/'>Home</Link>
+                                </Typography>
+                            </MenuItem>
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <Typography textAlign="center">
+                                    <Link style={{ textDecoration: 'none' }} to='/allNews'>All News</Link>
+                                </Typography>
+                            </MenuItem>
+
                         </Menu>
                     </Box>
                     <Typography
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+                        sx={{ flexGrow: 1,color:'red', display: { xs: 'flex', md: 'none' } }}
                     >
-                        MI
+                        MI Restaurant
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            <Button
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                             <Link style={{color: 'white',textDecoration: 'none'}} to='/'>Home</Link>
-                            </Button>
-                            <Button
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                            <Link style={{color: 'white',textDecoration: 'none'}} to='/allNews'>All News</Link>
-                            </Button>
+                        <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'black', display: 'block' }}
+                        >
+                            <Link style={{ color: 'black', textDecoration: 'none' }} to='/'>Home</Link>
+                        </Button>
+                        <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'black', display: 'block' }}
+                        >
+                            <Link style={{ color: 'white', textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }} to='/cart'><ShoppingCartIcon  style={{color:'black'}}/></Link>
+                        </Button>
 
                     </Box>
 
-                 
+
                 </Toolbar>
             </Container>
         </AppBar>

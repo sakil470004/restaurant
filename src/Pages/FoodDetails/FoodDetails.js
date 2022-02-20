@@ -22,7 +22,7 @@ export default function FoodDetails() {
             .then(res => res.json())
             .then(data => {
 
-                const found = data.find(element => element._id == foodId);
+                const found = data.find(element => element._id === foodId);
                 setCurrentFood(found)
 
             })

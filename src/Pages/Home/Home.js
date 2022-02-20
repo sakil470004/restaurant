@@ -6,11 +6,15 @@ import MiddleNav from '../MiddleNav/MiddleNav'
 function Home() {
     const [searchField, setSearchField] = useState('')
     const [currentDish, setCurrentDish] = useState('breakfast')
-    const [foods,setFoods]=useState([]);
+    const [foods, setFoods] = useState([]);
     const handleSearch = (e) => {
         // console.log(e.target.value)
         setSearchField(e.target.value)
     }
+    const filteredFood = foods.filter(fd => {
+        return fd.name.toLowerCase().includes(searchField.toLowerCase())
+    })
+
 
     useEffect(() => {
         fetch('http://localhost:5000/foods')
@@ -20,7 +24,6 @@ function Home() {
                     data = data.filter(n => n.category === currentDish);
                 }
                 setFoods(data)
-                // console.log(data)
             })
 
     }, [currentDish, searchField]);
@@ -33,10 +36,19 @@ function Home() {
                 </div>
 
             </div>
-            <MiddleNav currentDish={currentDish} setCurrentDish={setCurrentDish} searchField={searchField} />
-            <CardList 
-            foods={foods} 
-            />
+
+            {filteredFood.length ?
+                <div>
+                    <MiddleNav currentDish={currentDish} setCurrentDish={setCurrentDish} searchField={searchField} />
+                    <CardList
+                        foods={filteredFood}
+                    />
+                </div> :
+                <div style={{ height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <h1>No Search Found</h1>
+                </div>
+            }
+
         </div>
     )
 }
