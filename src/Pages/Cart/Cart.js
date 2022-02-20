@@ -8,23 +8,26 @@ import jsPDF from 'jspdf';
 
 export default function Cart() {
     const [cartFood, setCartFood] = useState([])
-    const [tips, setTips] = useState(false);
+    const [tips, setTips] = useState(true);
 
     const totalCost = cartFood.reduce((fd, currentValue) => {
         return fd + parseInt((currentValue.quantity * currentValue.price).toFixed(2))
 
     }, 0)
     const handleMakeBill = () => {
-        let doc=new jsPDF('landscape','px','a4','false');
-        doc.setFont('Helvertica','bold')
-        doc.text(60,60,'Total Cost\n')
-        doc.text(60,80,'Tips')
-        doc.text(60,100,'Total Bill')
-        doc.setFont('Helvertica','Normal')
-        doc.text(130,60,totalCost.toString())
-        doc.text(130,80,(totalCost*0.1).toString())
-        doc.text(130,100,(totalCost+(totalCost*0.1)).toString())
+        let doc = new jsPDF('landscape', 'px', 'a4', 'false');
+        doc.setFont('Helvertica', 'bold')
+        doc.text(60, 60, 'Total Cost\n')
+        doc.text(60, 80, 'Tips')
+        doc.text(60, 100, 'Total Bill')
+        doc.setFont('Helvertica', 'Normal')
+        doc.text(130, 60, totalCost.toString())
+        doc.text(130, 80, (totalCost * 0.1).toString())
+        doc.text(130, 100, (totalCost + (totalCost * 0.1)).toString())
         doc.save('bill.pdf')
+        clearTheCart()
+        alert('Bill Outed')
+        setCartFood([])
     }
     const fetchDataFromLocalStorage = (data) => {
         // setFoods(data)
@@ -53,7 +56,7 @@ export default function Cart() {
     }
 
     useEffect(() => {
-        fetch('http://localhost:5000/foods')
+        fetch('https://resturent-api.herokuapp.com/foods')
             .then(res => res.json())
             .then(data => {
                 fetchDataFromLocalStorage(data)
@@ -110,7 +113,7 @@ export default function Cart() {
                 <h2>Total Cost : {totalCost}</h2>
                 <Button onClick={() => setTips(!tips)}>{tips ? 'Cancel Tips' : 'Set Tips'}</Button>
                 <h1>Total Bill With Or Without Tips : {totalCost + (tips ? (totalCost * 0.1) : 0)}</h1>
-                <Button style={{color:'red'}} onClick={handleMakeBill}>Make Bill</Button>
+                <Button style={{ color: 'red' }} onClick={handleMakeBill}>Make Bill</Button>
             </div>
         </Container>
     )
