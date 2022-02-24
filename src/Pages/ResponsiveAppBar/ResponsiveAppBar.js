@@ -79,6 +79,11 @@ const ResponsiveAppBar = () => {
                                     <Link style={{ textDecoration: 'none' }} to='/cart'><ShoppingCartIcon /></Link>
                                 </Typography>
                             </MenuItem>
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <Typography textAlign="center">
+                                    <Link style={{ textDecoration: 'none' }} to='/addFood'>Add Food</Link>
+                                </Typography>
+                            </MenuItem>
 
                         </Menu>
                     </Box>
@@ -103,6 +108,12 @@ const ResponsiveAppBar = () => {
                             sx={{ my: 2, color: 'black', display: 'block' }}
                         >
                             <ShoppingCartIcon />
+                        </Button>
+                        <Button
+                            onClick={() => navigation('/addFood')}
+                            sx={{ my: 2, color: 'black', display: 'block' }}
+                        >
+                            Add Food
                         </Button>
 
                     </Box>
