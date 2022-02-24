@@ -9,7 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 // const pages = ['Products', 'Pricing', 'Blog'];
@@ -24,7 +24,7 @@ const ResponsiveAppBar = () => {
         setAnchorElNav(null);
     };
 
-
+    const navigation = useNavigate();
 
     return (
         <AppBar elevation={0} position="sticky" style={{ background: '#fcf4e0' }}>
@@ -34,9 +34,9 @@ const ResponsiveAppBar = () => {
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ mr: 2,color:'red', display: { xs: 'none', md: 'flex' } }}
+                        sx={{ mr: 2, color: 'red', cursor: 'pointer', display: { xs: 'none', md: 'flex' } }}
                     >
-                       MI Restaurant
+                        MI Restaurant
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -76,7 +76,7 @@ const ResponsiveAppBar = () => {
                             </MenuItem>
                             <MenuItem onClick={handleCloseNavMenu}>
                                 <Typography textAlign="center">
-                                    <Link style={{ textDecoration: 'none' }} to='/allNews'>All News</Link>
+                                    <Link style={{ textDecoration: 'none' }} to='/cart'><ShoppingCartIcon /></Link>
                                 </Typography>
                             </MenuItem>
 
@@ -86,22 +86,23 @@ const ResponsiveAppBar = () => {
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ flexGrow: 1,color:'red', display: { xs: 'flex', md: 'none' } }}
+                        onClick={() => navigation('/')}
+                        sx={{ flexGrow: 1, color: 'red', cursor: 'pointer', display: { xs: 'flex', md: 'none' } }}
                     >
                         MI Restaurant
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         <Button
-                            onClick={handleCloseNavMenu}
+                            onClick={() => navigation('/')}
                             sx={{ my: 2, color: 'black', display: 'block' }}
                         >
-                            <Link style={{ color: 'black', textDecoration: 'none' }} to='/'>Home</Link>
+                            Home
                         </Button>
                         <Button
-                            onClick={handleCloseNavMenu}
+                            onClick={() => navigation('/cart')}
                             sx={{ my: 2, color: 'black', display: 'block' }}
                         >
-                            <Link style={{ color: 'white', textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }} to='/cart'><ShoppingCartIcon  style={{color:'black'}}/></Link>
+                            <ShoppingCartIcon />
                         </Button>
 
                     </Box>

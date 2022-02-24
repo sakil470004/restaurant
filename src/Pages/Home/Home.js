@@ -37,13 +37,15 @@ function Home() {
 
             </div>
 
-            {filteredFood.length ?
+            {filteredFood.length &&
                 <div>
                     <MiddleNav currentDish={currentDish} setCurrentDish={setCurrentDish} searchField={searchField} />
                     <CardList
                         foods={filteredFood}
                     />
-                </div> :
+                </div>
+            }
+            {(searchField && !filteredFood.length) &&
                 <div style={{ height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <h1>No Search Found</h1>
                 </div>

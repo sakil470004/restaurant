@@ -49,7 +49,7 @@ export default function FoodDetails() {
     return (
         <Container >
             <Grid container spacing={2}>
-                <Grid item xs={4} style={{ textAlign: 'center',display:'flex',alignItems:'center',justifyContent:'center' }}>
+                <Grid item xs={12} md={4}  style={{ textAlign: 'center',display:'flex',alignItems:'center',justifyContent:'center' }}>
                     <div >
                         <h1>{currentFood.name}</h1>
                         <p>{currentFood.description}</p>
@@ -66,7 +66,7 @@ export default function FoodDetails() {
                         <button onClick={handleAddCartButton} className='btn-add-food-details'><ShoppingCartIcon />Add</button>
                     </div>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={12} md={8}>
                     <div style={{ width: '100%' }}>
                         <img style={{ width: '100%' }} src={currentFood.img} alt='food' />
 
