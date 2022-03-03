@@ -28,7 +28,7 @@ function AddFood() {
         const newData = { ...food, category: radioValue }
         console.log(newData)
         setIsLoading(true)
-        fetch('http://localhost:5000/foods', {
+        fetch('https://resturent-api.herokuapp.com/foods', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
