@@ -2,7 +2,7 @@ import React from 'react';
 // import { useContext } from 'react';
 import './MiddleNav.css';
 
-const MiddleNav = ({ currentDish, setCurrentDish,searchField }) => {
+const MiddleNav = ({ currentDish, setCurrentDish, searchField }) => {
 
 
     const handleNav = (e) => {
@@ -25,13 +25,12 @@ const MiddleNav = ({ currentDish, setCurrentDish,searchField }) => {
             <div >
                 <button name='breakfast' onClick={handleNav}>Breakfast
 
-                    {currentDish === 'breakfast' && searchField===''  && <hr />}</button>
+                    {currentDish === 'breakfast' && searchField === '' && <hr />}</button>
                 <button onClick={handleNav} name='lunch' >Lunch
-                    {currentDish === 'lunch' && searchField===''   && <hr />}
+                    {currentDish === 'lunch' && searchField === '' && <hr />}
                 </button>
                 <button onClick={handleNav} name='dinner' >Dinner
-
-                    {currentDish === 'dinner' && searchField==='' && <hr />}
+                    {currentDish === 'dinner' && searchField === '' && <hr />}
                 </button>
             </div>
         </div>
