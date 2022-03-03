@@ -1,7 +1,7 @@
 .imageWidth {
     width: 250px;
-    height: auto;
-    border-radius: 20px;
+    height: 250px;
+    clip-path: circle();
 }
 
 .card-container {

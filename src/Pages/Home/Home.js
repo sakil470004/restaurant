@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import './Home.css';
 import CardList from '../Card/CardList'
 import MiddleNav from '../MiddleNav/MiddleNav'
+import { LinearProgress } from '@mui/material';
 
 function Home() {
     const [searchField, setSearchField] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     const [currentDish, setCurrentDish] = useState('breakfast')
     const [foods, setFoods] = useState([]);
     const handleSearch = (e) => {
@@ -17,6 +19,7 @@ function Home() {
 
 
     useEffect(() => {
+        setIsLoading(true)
         fetch('https://resturent-api.herokuapp.com/foods')
             .then(res => res.json())
             .then(data => {
@@ -24,7 +27,9 @@ function Home() {
                     data = data.filter(n => n.category === currentDish);
                 }
                 setFoods(data)
+                setIsLoading(false)
             })
+      
 
     }, [currentDish, searchField]);
     return (
@@ -36,8 +41,12 @@ function Home() {
                 </div>
 
             </div>
+            {
+                isLoading &&
+                <div><LinearProgress /></div>
+            }
 
-            {filteredFood.length &&
+            {(filteredFood.length && !isLoading) &&
                 <div>
                     <MiddleNav currentDish={currentDish} setCurrentDish={setCurrentDish} searchField={searchField} />
                     <CardList
@@ -45,7 +54,7 @@ function Home() {
                     />
                 </div>
             }
-            {(searchField && !filteredFood.length) &&
+            {(searchField && !filteredFood.length && !isLoading) &&
                 <div style={{ height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <h1>No Search Found</h1>
                 </div>

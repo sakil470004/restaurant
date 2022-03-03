@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { addToDb2 } from '../fakedb/fakedb';
-import { Container, Grid } from '@mui/material';
+import { Container, Grid, LinearProgress } from '@mui/material';
 
 
 export default function FoodDetails() {
 
 
     const [currentFood, setCurrentFood] = useState({})
+    const [isLoading, setIsLoading] = useState(false)
 
 
     const [itemCount, setItemCount] = useState(1)
@@ -18,16 +19,17 @@ export default function FoodDetails() {
 
 
     useEffect(() => {
+        setIsLoading(true)
         fetch('https://resturent-api.herokuapp.com/foods')
             .then(res => res.json())
             .then(data => {
 
                 const found = data.find(element => element._id === foodId);
                 setCurrentFood(found)
-
+                setIsLoading(false)
             })
 
-    }, []);
+    }, [foodId]);
 
     const handleItemPlus = () => {
         setItemCount(itemCount + 1)
@@ -48,31 +50,37 @@ export default function FoodDetails() {
 
     return (
         <Container >
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={4}  style={{ textAlign: 'center',display:'flex',alignItems:'center',justifyContent:'center' }}>
-                    <div >
-                        <h1>{currentFood.name}</h1>
-                        <p>{currentFood.description}</p>
-                        <div className='countFood-div-wrapper-food-details'>
+            {
+                isLoading &&
+                <div><LinearProgress /></div>
+            }
+            {!isLoading &&
+                <Grid container spacing={2}>
+                    <Grid item xs={12} md={5} style={{ textAlign: 'left', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <div >
+                            <h1>{currentFood.name}</h1>
+                            <p>{currentFood.description}</p>
+                            <div className='countFood-div-wrapper-food-details'>
 
-                            <h1 >${(currentFood.price * itemCount).toFixed(2)} </h1>
+                                <h1 >${(currentFood.price * itemCount).toFixed(2)} </h1>
 
-                            <div className='countFood-div-food-details'>
-                                <button name='-' onClick={handleItemMinus} >-</button>
-                                <button>{itemCount}</button>
-                                <button name='+' onClick={handleItemPlus}>+</button>
+                                <div className='countFood-div-food-details'>
+                                    <button name='-' onClick={handleItemMinus} >-</button>
+                                    <button>{itemCount}</button>
+                                    <button name='+' onClick={handleItemPlus}>+</button>
+                                </div>
                             </div>
+                            <button onClick={handleAddCartButton} className='btn-add-food-details'><ShoppingCartIcon />Add</button>
                         </div>
-                        <button onClick={handleAddCartButton} className='btn-add-food-details'><ShoppingCartIcon />Add</button>
-                    </div>
-                </Grid>
-                <Grid item xs={12} md={8}>
-                    <div style={{ width: '100%' }}>
-                        <img style={{ width: '100%' }} src={currentFood.img} alt='food' />
+                    </Grid>
+                    <Grid item xs={12} md={7}>
+                        <div style={{}}>
+                            <img style={{ width: '100%', clipPath: 'circle()' }} src={currentFood.img} alt='food' />
 
-                    </div>
+                        </div>
+                    </Grid>
                 </Grid>
-            </Grid>
+            }
         </Container>
     )
 }

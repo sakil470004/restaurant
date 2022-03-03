@@ -35,6 +35,7 @@ const ResponsiveAppBar = () => {
                         noWrap
                         component="div"
                         sx={{ mr: 2, color: 'red', cursor: 'pointer', display: { xs: 'none', md: 'flex' } }}
+                        onClick={()=>navigation('/')}
                     >
                         MI Restaurant
                     </Typography>
@@ -104,17 +105,18 @@ const ResponsiveAppBar = () => {
                             Home
                         </Button>
                         <Button
-                            onClick={() => navigation('/cart')}
-                            sx={{ my: 2, color: 'black', display: 'block' }}
-                        >
-                            <ShoppingCartIcon />
-                        </Button>
-                        <Button
                             onClick={() => navigation('/addFood')}
                             sx={{ my: 2, color: 'black', display: 'block' }}
                         >
                             Add Food
                         </Button>
+                        <Button
+                            onClick={() => navigation('/cart')}
+                            sx={{ my: 2, color: 'black', display: 'block' }}
+                        >
+                            <ShoppingCartIcon />
+                        </Button>
+
 
                     </Box>
 

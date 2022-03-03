@@ -1,9 +1,8 @@
-
-
-.countFood-div-wrapper-food-details{
-display: flex;
-margin: 10px;
+.countFood-div-wrapper-food-details {
+    display: flex;
+    margin: 10px;
 }
+
 .countFood-div-food-details {
     display: flex;
     border: 1px solid black;
@@ -14,7 +13,7 @@ margin: 10px;
     margin-top: 20px;
     margin-left: 20px;
 
-    
+
 }
 
 .countFood-div-food-details button {
@@ -38,8 +37,9 @@ margin: 10px;
     height: 40px;
     padding: 5px;
     border: none;
-    border-radius:105px ;
+    border-radius: 105px;
     outline: none;
     cursor: pointer;
 
 }
+
