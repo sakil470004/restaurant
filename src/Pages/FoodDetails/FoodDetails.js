@@ -52,7 +52,7 @@ export default function FoodDetails() {
         <Container >
             {
                 isLoading &&
-                <div><LinearProgress /></div>
+                <div style={{ height: '40vh' }}><LinearProgress /></div>
             }
             {!isLoading &&
                 <Grid container spacing={2}>

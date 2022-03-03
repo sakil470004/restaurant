@@ -9,6 +9,7 @@ import {
 import Home from './Pages/Home/Home';
 import Cart from './Pages/Cart/Cart';
 import AddFood from './Pages/AddFood/AddFood';
+import Footer from './Pages/Responsive footer pure css/Footer';
 function App() {
   return (
     <div className="App">
@@ -26,6 +27,7 @@ function App() {
           </Route>
 
         </Routes>
+        <Footer />
       </Router>
 
     </div>

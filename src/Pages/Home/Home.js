@@ -29,7 +29,7 @@ function Home() {
                 setFoods(data)
                 setIsLoading(false)
             })
-      
+
 
     }, [currentDish, searchField]);
     return (
@@ -43,7 +43,9 @@ function Home() {
             </div>
             {
                 isLoading &&
-                <div><LinearProgress /></div>
+                <div style={{ height: '40vh' }}>
+                    <LinearProgress />
+                </div>
             }
 
             {(filteredFood.length && !isLoading) &&
